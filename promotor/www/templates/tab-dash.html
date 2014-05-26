@@ -1,0 +1,15 @@
+<ion-view title="Dashboard">
+  <ion-content class="has-header padding">
+      <h1>Procurar Convidado</h1>
+      <label class="item item-input">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="search" placeholder="Pesquisar" ng-change="updateSearch(searchvalue)" ng-model="searchvalue">
+      </label>
+
+      <ion-list>
+          <ion-item ng-repeat="result in results" type="item-text-wrap" href="#/tab/guest/{{result.Id}}">
+              {{result.value}}
+          </ion-item>
+      </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,38 @@
+<span id="cal-slide-tick" style="display: none"></span>
+<div id="cal-slide-content" class="cal-event-list">
+	<ul class="unstyled list-unstyled">
+		<% _.each(events, function(event) { %>
+			<li  class="<%= event['class'] %>" style="margin: 10px;">  
+			<div class="row"> 
+			<div class="col-md-4 ">
+			<a href="<%= event.url ? event.url : 'javascript:void(0)' %>" data-event-id="<%= event.id %>"
+					data-event-class="<%= event['class'] %>" class="event-item" style="text-decoration: none;">
+			<img src="/files/getbyid/<%= event.photo %>" class="img-responsive">
+			</a>
+			</div>
+			<div class="col-md-8">
+			<%= event.title %> 	<%= event.description %>
+			</div>
+
+			</div>
+				</li>
+
+		<% }) %>
+	</ul> 
+</div>
+<style>
+li:first-child
+{ 
+margin-top:0 !important;
+}  
+li:last-child
+{ 
+margin-bottom:0 !important; 
+}  
+.img-responsive {
+display: inline;
+height: auto;
+max-width: 100%;
+} 
+</style> 
+ 
