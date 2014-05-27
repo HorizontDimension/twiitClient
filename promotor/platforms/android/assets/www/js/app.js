@@ -8,14 +8,15 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngResource'])
 
 .run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    if(window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
+    $ionicPlatform.ready(function() {
+        if (window.StatusBar) {
+            // org.apache.cordova.statusbar required
+            StatusBar.styleDefault();
+        }
+    });
+}).config(function($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptor');
 })
-
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -79,11 +80,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
                   controller: 'NewGuest'
               }
           }
+      }).state('login', {
+          url: '/login',
+          templateUrl: 'templates/login.html',
+          controller: 'Login'
+
       })
 
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/AddToNextEvent');
 
-}).value("apiaddr", "http://guestlist.twiit.pt");;
+}).value("apiaddr", "http://guestlist.twiit.pt");
 

@@ -1,94 +1,129 @@
 angular.module('starter.controllers', [])
 
-    .controller('DashCtrl', function ($scope) {
-    })
+.controller('DashCtrl', function($scope) {})
 
-    .controller('FriendsCtrl', function ($scope, Friends) {
-        $scope.friends = Friends.all();
-    })
+.controller('FriendsCtrl', function($scope, Friends) {
+    $scope.friends = Friends.all();
+})
 
-    .controller('FriendDetailCtrl', function ($scope, $stateParams, Friends) {
-        $scope.friend = Friends.get($stateParams.friendId);
-    })
+.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
+    $scope.friend = Friends.get($stateParams.friendId);
+})
 
-    .controller('AccountCtrl', function ($scope) {
-    })
+.controller('AccountCtrl', function($scope) {})
 
-    .controller('NewGuest', function ($scope, Guest) {
-        $scope.user = {};
+.controller('NewGuest', function($scope, Guest) {
+    $scope.user = {};
 
-        $scope.submit = function (user) {
-            u = new Guest;
-            for (var p in user) u[p] = user[p];
-            u.$save();
+    $scope.submit = function(user) {
+        u = new Guest;
+        for (var p in user) u[p] = user[p];
+        u.$save();
 
 
-        }
-    })
+    }
+})
 
-    .controller('AddToNextEvent', function ($scope, $ionicLoading, apiaddr, Guest, $location) {
-        $scope.apiaddr = apiaddr;
-        $scope.show = function () {
-            $scope.loading = $ionicLoading.show({
-                content: '<i class="ion-loading-c"></i>'
-            });
-        };
-        $scope.hide = function () {
-            $scope.loading.hide();
-        };
-        $scope.results = [];
+.controller('AddToNextEvent', function($scope, $rootScope, $ionicLoading, apiaddr, Guest, $location) {
+    $scope.apiaddr = apiaddr;
+    $rootScope.show = function() {
+        $scope.loading = $ionicLoading.show({
+            content: '<i class="ion-loading-c"></i>'
+        });
+    };
+    $rootScope.hide = function() {
+        $scope.loading.hide();
+    };
+    $scope.results = [];
 
-        $scope.updateSearch = function (searchvalue) {
+    $scope.updateSearch = function(searchvalue) {
 
-            if (searchvalue == "")
-                return;
-            $scope.show();
+        if (searchvalue == "")
+            return;
+        $scope.show();
 
-            Guest.search({id: searchvalue}, function (response, headers) {
+        Guest.search({
+            id: searchvalue
+        }, function(response, headers) {
 
-                $scope.results = response
+            $scope.results = response
 
-                $scope.hide()
-            }, function (errorResponse) {
+            $ionicLoading.hide()
+        }, function(errorResponse) {
 
-                $scope.hide()
-
-
-            })
-
-        }
-    })
-    .controller("addUserToEvent",function($scope){
+            $ionicLoading.hide()
 
 
+        })
 
-    }).controller("ContentController", function ($scope, $ionicSideMenuDelegate) {
+    }
+})
+    .controller("addUserToEvent", function($scope) {
+
+
+    }).controller("ContentController", function($scope, $ionicSideMenuDelegate) {
         // Main app controller, empty for the example
-        $scope.leftButtons = [
-            {
-                type: 'button-clear',
-                content: '<i class="icon ion-navicon"></i>',
-                tap: function (e) {
-                    $scope.sideMenuController.toggleLeft();
-                }
+        $scope.leftButtons = [{
+            type: 'button-clear',
+            content: '<i class="icon ion-navicon"></i>',
+            tap: function(e) {
+                $scope.sideMenuController.toggleLeft();
             }
-        ];
-    }) .controller('events.calendar',function ($scope, $http) {
+        }];
+    }).controller('events.calendar', function($scope, $http) {
 
 
     })
-    .controller('events.read',function ($scope, $http,$routeParams) {
-        $scope.event={}
+    .controller('events.read', function($scope, $http, $routeParams) {
+        $scope.event = {}
 
-        $http({method: 'GET', url: '/events/'+$routeParams.id}).
-            success(function(data, status, headers, config) {
-                $scope.event = data;
-                $scope.Date=prettyDate("2008-01-28T20:24:17Z");
+        $http({
+            method: 'GET',
+            url: '/events/' + $routeParams.id
+        }).
+        success(function(data, status, headers, config) {
+            $scope.event = data;
+            $scope.Date = prettyDate("2008-01-28T20:24:17Z");
 
-            }).
-            error(function(data, status, headers, config) {
-                $scope.event = {}
+        }).
+        error(function(data, status, headers, config) {
+            $scope.event = {}
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+    })
+    .controller('Login', function($scope, $http, apiaddr, $window, $location) {
+
+        console.log("teste");
+        $scope.auth = {};
+
+        console.log($window.sessionStorage.token)
+
+        $scope.login = function(auth) {
+            console.log(auth);
+            $http.post(apiaddr + '/auth/login', auth).success(function(data, status, headers, config) {
+                if (data.token) {
+                    console.log("true")
+                    $window.sessionStorage.token = data.token;
+                    $location.path('/')
+
+                }
+
+
+
+
+                // this callback will be called asynchronously
+                // when the response is available
+            }).error(function(data, status, headers, config) {
+                delete $window.sessionStorage.token;
+
+
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
-    });
+
+        }
+
+    })
+
+;

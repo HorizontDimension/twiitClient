@@ -11,12 +11,12 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
-    <name>TwiitPromotor</name>
+    <name>HelloCordova</name>
     <description>
-        Guestlist Promotor app
+        An Ionic Framework and Cordova project.
     </description>
-    <author email="it@euroneves.pt" href="http://euroneves.pt/">
-      Euroneves IT Team
+    <author email="hi@ionicframework" href="http://ionicframework.com/">
+      Ionic Framework Team
     </author>
     <content src="index.html" />
     <access origin="*" />
