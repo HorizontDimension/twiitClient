@@ -48,10 +48,10 @@ angular.module('starter.controllers', [])
 
             $scope.results = response
 
-            $scope.hide()
+            $ionicLoading.hide()
         }, function(errorResponse) {
 
-            $scope.hide()
+            $ionicLoading.hide()
 
 
         })
