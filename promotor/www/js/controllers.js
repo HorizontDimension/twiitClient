@@ -58,8 +58,7 @@ angular.module('starter.controllers', [])
 
         }
     })
-    .controller("addUserToEvent",function($scope){
-
+    .controller("addUserToEvent", function ($scope) {
 
 
     }).controller("ContentController", function ($scope, $ionicSideMenuDelegate) {
@@ -73,22 +72,57 @@ angular.module('starter.controllers', [])
                 }
             }
         ];
-    }) .controller('events.calendar',function ($scope, $http) {
+    }).controller('events.calendar', function ($scope, $http) {
 
 
     })
-    .controller('events.read',function ($scope, $http,$routeParams) {
-        $scope.event={}
+    .controller('events.read', function ($scope, $http, $routeParams) {
+        $scope.event = {}
 
-        $http({method: 'GET', url: '/events/'+$routeParams.id}).
-            success(function(data, status, headers, config) {
+        $http({method: 'GET', url: '/events/' + $routeParams.id}).
+            success(function (data, status, headers, config) {
                 $scope.event = data;
-                $scope.Date=prettyDate("2008-01-28T20:24:17Z");
+                $scope.Date = prettyDate("2008-01-28T20:24:17Z");
 
             }).
-            error(function(data, status, headers, config) {
+            error(function (data, status, headers, config) {
                 $scope.event = {}
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
-    });
+    })
+    .controller('Login', function($scope, $http, apiaddr, $window, $location) {
+
+        console.log("teste");
+        $scope.auth = {};
+
+        console.log($window.sessionStorage.token)
+
+        $scope.login = function(auth) {
+            console.log(auth);
+            $http.post(apiaddr + '/auth/login', auth).success(function(data, status, headers, config) {
+                if (data.token) {
+                    console.log("true")
+                    $window.sessionStorage.token = data.token;
+                    $location.path('/')
+
+                }
+
+
+
+
+                // this callback will be called asynchronously
+                // when the response is available
+            }).error(function(data, status, headers, config) {
+                delete $window.sessionStorage.token;
+
+
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
+        }
+
+    })
+
+;
