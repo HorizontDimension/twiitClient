@@ -1,4 +1,4 @@
-- [ ] Figure out wormholes
+- [x] start hui
   - [ ] Call @arfon
   - [ ] Research ([docs](http://en.wikipedia.org/wiki/Wormhole#Time_travel))
   - [ ] Build prototype #15
