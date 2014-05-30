@@ -9,7 +9,7 @@
         <ion-list>
             <ion-item class="item item-checkbox" ng-repeat="result in results" type="item-text-wrap">
                 <label class="checkbox">
-                    <input type="checkbox" >
+                    <input type="checkbox" ng-model="getValue" guestid="{{result.Id}}">
                 </label>
               {{result.value}}
             </ion-item>
