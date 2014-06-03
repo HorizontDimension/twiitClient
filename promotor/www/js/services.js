@@ -10,6 +10,18 @@ angular.module('starter.services', [])
 
         return guest
     })
+    .factory("Promotor", function ($resource, apiaddr) {
+        promotor = $resource(apiaddr + '/promotor/:id', {id: '@id'},
+            { inviteguest: {method: 'post', url: apiaddr + '/promotor/inviteguest/:id'}});
+
+        return promotor
+    })
+    .factory("Event", function ($resource, apiaddr) {
+        event = $resource(apiaddr + '/events/:id', {id: '@id'},
+            { latests: {method: 'get', url: apiaddr + '/events/latests/:number', isArray: true}});
+
+        return event
+    })
 
     .factory('authInterceptor', ['$rootScope', '$q', '$window', '$location', function ($rootScope, $q, $window, $location) {
         return {

@@ -9,11 +9,12 @@
         <ion-list>
             <ion-item class="item item-checkbox" ng-repeat="result in results" type="item-text-wrap">
                 <label class="checkbox">
-                    <input type="checkbox" ng-model="getValue" guestid="{{result.Id}}">
+                    <input type="checkbox" ng-model="getValue" ng-change="addtoguest(result.Id,event.Id,getValue)">
                 </label>
-              {{result.value}}
+                {{result.value}}
             </ion-item>
         </ion-list>
+
 
     </ion-content>
 </ion-view>
