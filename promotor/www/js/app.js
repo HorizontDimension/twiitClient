@@ -5,91 +5,81 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngResource'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngResource', 'angularMoment'])
 
-.run(function($ionicPlatform) {
-    $ionicPlatform.ready(function() {
-        if (window.StatusBar) {
-            // org.apache.cordova.statusbar required
-            StatusBar.styleDefault();
-        }
-    });
-}).config(function($httpProvider) {
-    $httpProvider.interceptors.push('authInterceptor');
-})
-.config(function($stateProvider, $urlRouterProvider) {
-
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider 
-
-    // setup an abstract state for the tabs directive
-    .state('tab', {
-      url: "/tab",
-      abstract: true,
-      templateUrl: "templates/tabs.html"
+    .run(function ($ionicPlatform, amMoment) {
+        amMoment.changeLanguage('pt');
+        $ionicPlatform.ready(function () {
+            if (window.StatusBar) {
+                // org.apache.cordova.statusbar required
+                StatusBar.styleDefault();
+            }
+        });
+    }).config(function ($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptor');
     })
+    .config(function ($stateProvider, $urlRouterProvider) {
 
-    // Each tab has its own nav history stack:
+        // Ionic uses AngularUI Router which uses the concept of states
+        // Learn more here: https://github.com/angular-ui/ui-router
+        // Set up the various states which the app can be in.
+        // Each state's controller can be found in controllers.js
+        $stateProvider
 
-    .state('tab.AddToNextEvent', {
-      url: '/AddToNextEvent',
-      views: {
-        'tab-AddToNextEvent': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'AddToNextEvent'
-        }
-      }
-    })
+            // setup an abstract state for the tabs directive
+            .state('tab', {
+                url: "/tab",
+                abstract: true,
+                templateUrl: "templates/tabs.html"
+            })
 
-    .state('tab.friends', {
-      url: '/friends',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
-        }
-      }
-    })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
-      }
-    })
+            // Each tab has its own nav history stack:
 
-    .state('tab.events', {
-      url: '/events',
-      views: {
-        'tab-events': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
-        }
-      }
-    })
-      .state('tab.newguest', {
-          url: '/newguest',
-          views: {
-              'tab-newguest': {
-                  templateUrl: 'templates/newguest.html',
-                  controller: 'NewGuest'
-              }
-          }
-      }).state('login', {
-          url: '/login',
-          templateUrl: 'templates/login.html',
-          controller: 'Login'
+            .state('tab.AddToNextEvent', {
+                url: '/AddToNextEvent',
+                views: {
+                    'tab-AddToNextEvent': {
+                        templateUrl: 'templates/addguesttoevent.html',
+                        controller: 'AddToNextEvent'
+                    }
+                }
+            })
+            .state('tab.events', {
+                url: '/events',
+                views: {
+                    'tab-events': {
+                        templateUrl: 'templates/tab-account.html',
+                        controller: 'AccountCtrl'
+                    }
+                }
+            })
+            .state('tab.AddToSelectedEvent', {
+                url: '/AddToSelectedEvent',
+                views: {
+                    'tab-AddToSelectedEvent': {
+                        templateUrl: 'templates/AddToSelectedEvent.html',
+                        controller: 'AddToSelectedEvent'
+                    }
+                }
+            })
+            .state('tab.newguest', {
+                url: '/newguest',
+                views: {
+                    'tab-newguest': {
+                        templateUrl: 'templates/newguest.html',
+                        controller: 'NewGuest'
+                    }
+                }
+            }).state('login', {
+                url: '/login',
+                templateUrl: 'templates/login.html',
+                controller: 'Login'
 
-      })
+            })
 
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/AddToNextEvent');
+        // if none of the above states are matched, use this as the fallback
+        $urlRouterProvider.otherwise('/tab/AddToNextEvent');
 
-}).value("apiaddr", "http://guestlist.twiit.pt");
+    }).value("apiaddr", "http://guestlist.twiit.pt");
 

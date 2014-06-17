@@ -1,4 +1,6 @@
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/ant-build/classes.dex : \
+/home/horizont/Desktop/twiitClient/promotor/platforms/android/ant-build/classes/org/apache/cordova/networkinformation/NetworkManager$1.class \
+/home/horizont/Desktop/twiitClient/promotor/platforms/android/ant-build/classes/org/apache/cordova/networkinformation/NetworkManager.class \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard.class \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$1.class \

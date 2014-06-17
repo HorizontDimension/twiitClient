@@ -1,0 +1,27 @@
+<ion-view class="" title="Add to Event">
+    <ion-content class="has-header padding">
+        <h1>Select Event</h1>
+
+        <div class="item range range-positive">
+            <i class="icon ion-minus-circled"></i>
+            <input type="range"  name="numberevents" ng-model="data.numberevents" min="1" max="30" value="numberevents">
+            <i class="icon ion-plus-circled"></i>
+        </div>
+
+       Numero de Eventos: {{data.numberevents}}
+        <div class="list" ng-repeat="event in events">
+
+            <a class="item item-thumbnail-left" href="#">
+                <img ng-src="{{apiaddr}}/files/{{event.Thumb}}">
+                <h2>{{event.Name}}</h2>
+                <p>{{event.Description}}</p>{{event.Date | amCalendar}}
+
+            </a>
+
+
+
+        </div>
+
+
+    </ion-content>
+</ion-view>

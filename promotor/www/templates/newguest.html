@@ -1,30 +1,32 @@
 <ion-view title="Adicionar Novo Guest" type="bar-dark">
     <ion-content class="has-header"  >
-        <form ng-controller="NewGuest"  ng-submit="submit(user)">
+        <form name="newGuest"ng-controller="NewGuest"  ng-submit="submit(user)">
         <div class="list">
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">First Name</span>
-                <input type="text" ng-model="user.Firstname" >
+            <label class="item item-input">
+
+                <input type="text" ng-model="user.Firstname" name="Firstname" required placeholder="First Name" >
+                <span class="error" ng-show="newGuest.Firstname.$error.required">
+      Obrigatório</span>
             </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Last Name</span>
-                <input type="text" ng-model="user.Lastname" >
+            <label class="item item-input">
+
+                <input type="text" ng-model="user.Lastname" placeholder="Last Name">
             </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Email</span>
-                <input type="email" ng-model="user.Email" >
+            <label class="item item-input ">
+
+                <input type="email" ng-model="user.Email" placeholder="Email">
             </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Telefone</span>
-                <input type="text" ng-model="user.PhoneNumber" >
+            <label class="item item-input ">
+
+                <input type="text" ng-model="user.PhoneNumber" placeholder="Telefone">
             </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Password</span>
-                <input type="password" ng-model="user.Pass" >
+            <label class="item item-input ">
+
+                <input type="password" ng-model="user.Pass" placeholder="Password">
             </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Password confirm</span>
-                <input type="password" ng-model="user.PassConfirm">
+            <label class="item item-input ">
+
+                <input type="password" ng-model="user.PassConfirm" placeholder="Password confirm">
             </label>
             <div class="padding">
                 <button class="button button-block button-positive">Submit</button>
