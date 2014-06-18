@@ -32,7 +32,6 @@
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/img \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/index.html \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/README.md \
-/home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/tmpls \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/cordova.js \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/js \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/libraries \
@@ -42,15 +41,8 @@
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/css \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/templates \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/img/TwiitLogo.png \
+/home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/img/logo.png \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/img/ionic.png \
-/home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/tmpls/day.html \
-/home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/tmpls/month.html \
-/home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/tmpls/events-list.html \
-/home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/tmpls/year.html \
-/home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/tmpls/week-days.html \
-/home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/tmpls/year-month.html \
-/home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/tmpls/month-day.html \
-/home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/tmpls/week.html \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/js/services.js \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/js/app.js \
 /home/horizont/Desktop/twiitClient/promotor/platforms/android/assets/www/js/controllers.js \

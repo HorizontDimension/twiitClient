@@ -1,11 +1,13 @@
-<ion-view class="" src="img/TwiitLogo.png" title="Dashboard">
+<ion-view title='<img class="title-image" src="img/logo.png" />'>
+
     <ion-content class="has-header padding">
+        <h3>Adicionar à Guest</h3>
+
 
         <a class="item item-thumbnail-left" href="#">
             <img ng-src="{{apiaddr}}/files/{{event.Thumb}}">
             <h2>{{event.Name}}</h2>
             <p>{{event.Description}}</p>{{event.Date | amCalendar}}
-
         </a>
         <label class="item item-input">
             <i class="icon ion-search placeholder-icon"></i>

@@ -77,42 +77,27 @@ angular.module('starter.services', [])
                 $ionicLoading.hide();
             }
         };
-    }]).directive('ionNetwork', function ($interval) {
+    }]).directive('passwordMatch', [function () {
         return {
             restrict: 'A',
-            scope: {
-                interval: '@?ionNetwork'
-            },
-            link: function (scope, element) {
-                if (window.cordova) {
-                    var allowedNetworkStates = [Connection.WIFI, Connection.CELL_4G, Connection.CELL_3G, Connection.CELL_2G];
-                    var disabledTags = ['input', 'button', 'textarea', 'select'];
-                    var tag = element[0].tagName.toLowerCase();
-                    scope.interval = parseInt(scope.interval) || 3000;
+            scope: true,
+            require: 'ngModel',
+            link: function (scope, elem, attrs, control) {
+                var checker = function () {
 
-                    function checkNetworkState() {
-                        if (allowedNetworkStates.indexOf(navigator.connection.type) === -1) {
-                            if (disabledTags.indexOf(tag) !== -1) {
-                                element[0].disabled = true;
-                            }
-                            element.removeClass('online');
-                            element.addClass('offline');
-                        } else {
-                            if (disabledTags.indexOf(tag) !== -1) {
-                                element[0].disabled = false;
-                            }
-                            element.removeClass('offline');
-                            element.addClass('online');
-                        }
-                    }
+                    //get the value of the first password
+                    var e1 = scope.$eval(attrs.ngModel);
 
-                    checkNetworkState();
-                    stop = $interval(checkNetworkState, scope.interval);
+                    //get the value of the other password
+                    var e2 = scope.$eval(attrs.passwordMatch);
+                    return e1 == e2;
+                };
+                scope.$watch(checker, function (n) {
 
-                    scope.$on('$destroy', function() {
-                        $interval.cancel(stop);
-                    });
-                }
+                    //set the form control to valid if both
+                    //passwords are the same, else invalid
+                    control.$setValidity("unique", n);
+                });
             }
         };
-    });
+    }]);

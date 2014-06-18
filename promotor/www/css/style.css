@@ -2,3 +2,12 @@
 input[type=checkbox]:focus {
     outline: 0 !important;
 }
+.title-image{
+    margin-top: 2px;
+    height: 40px;
+    background-color:#000000 ;
+    padding: 5px;
+}
+.title ,.bar, .bar-stable{
+    background-color: black;
+}

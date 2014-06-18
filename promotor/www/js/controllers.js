@@ -1,34 +1,38 @@
 angular.module('starter.controllers', [])
 
 
-    .controller('NewGuest', function ($scope, Guest) {
+    .controller('NewGuest', function ($scope, Guest,$location) {
         $scope.user = {};
 
         $scope.submit = function (user) {
             u = new Guest;
             for (var p in user) u[p] = user[p];
-            u.$save();
+            u.$save(function(){
+             $location.path("/")
+            });
         }
     })
 
     .controller('AddToNextEvent', function ($scope, $ionicLoading, apiaddr, Guest, Event, Promotor, $location) {
-        $scope.navTitle='<img class="title-image" src="images/kidsintouchtext.png" />';
+
         $scope.apiaddr = apiaddr;
-        $scope.event = {}
+        $scope.event = {};
         $scope.results = [];
 
+
+
         //get latest event
-        Event.latests({number: 1},
+        Event.latests({number: 30},
             function (response) {
-                $scope.event = response[0]
+                $scope.event = response[0];
 
                 console.log($scope.event)
 
             }, function (error) {
-                console.log("error")
+                console.log("error");
                 alert(error)
 
-            })
+            });
 
 
         $scope.isinguest = function (event, guestid) {
@@ -40,12 +44,18 @@ angular.module('starter.controllers', [])
                 }
             }
             return false;
-        }
+        };
 
 
         $scope.addtoguest = function (userid, eventid, action) {
             if (action) {
-                Promotor.inviteguest({id: userid}, angular.toJson(eventid))
+                Promotor.inviteguest({id: userid}, angular.toJson(eventid),
+                    function (response) {
+
+
+                    }, function (error) {
+                        alert(error)
+                    })
             } else {
                 Promotor.uninviteguest({id: userid}, angular.toJson(eventid))
             }
@@ -56,7 +66,7 @@ angular.module('starter.controllers', [])
                 }, function (error) {
                     alert(error)
                 })
-        }
+        };
 
 
         $scope.updateSearch = function (searchvalue) {
@@ -77,14 +87,22 @@ angular.module('starter.controllers', [])
     .controller("AddToSelectedEvent", function ($scope,$timeout,Event,apiaddr) {
 
         $scope.apiaddr=apiaddr;
-        $scope.data = { 'numberevents' : '5' };
+        $scope.data = { 'numberevents' : '2' };
         $scope.events = [];
-        Event.latests({number: $scope.data.numberevents},
+        $scope.totalEvents = 30;
+        Event.latests({number: 30},
             function (response) {
                 $scope.events = response
+                if (response.length<30){
+                    $scope.totalEvents = response.length
+                    if ($scope.totalEvents <= $scope.data.numberevents){
+                        $scope.data.numberevents = $scope.totalEvents
+                    }
+                }
+
             }, function (error) {
                 alert(error)
-            })
+            });
 
 
 
@@ -92,7 +110,7 @@ angular.module('starter.controllers', [])
         $scope.$watch('data.numberevents', function() {
             Event.latests({number: $scope.data.numberevents},
                 function (response) {
-                    $scope.events = response
+                    $scope.events = response;
                     console.log(response)
                 }, function (error) {
                     alert(error)
@@ -121,13 +139,13 @@ angular.module('starter.controllers', [])
         console.log("teste");
         $scope.auth = {};
 
-        console.log($window.localStorage.getItem('token'))
+        console.log($window.localStorage.getItem('token'));
 
         $scope.login = function (auth) {
             console.log(auth);
             $http.post(apiaddr + '/auth/login', auth).success(function (data, status, headers, config) {
                 if (data.token) {
-                    console.log("true")
+                    console.log("true");
                     $window.localStorage.setItem('token', data.token);
                     $location.path('/')
                 }
@@ -139,4 +157,21 @@ angular.module('starter.controllers', [])
                 // or server returns response with an error status.
             });
         }
+    }).controller('EventsCtrl',function($scope,Event){
+        $scope.events= [];
+
+        //get latest event
+        Event.latests({number: 30},
+            function (response) {
+                $scope.events = response;
+
+
+
+            }, function (error) {
+                console.log("error");
+                alert(error)
+
+            });
+
+
     });

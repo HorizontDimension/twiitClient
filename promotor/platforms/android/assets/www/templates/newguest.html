@@ -1,20 +1,22 @@
-<ion-view title="Adicionar Novo Guest" type="bar-dark">
-    <ion-content class="has-header"  >
+<ion-view title='<img class="title-image" src="img/logo.png" />' type="bar-dark">
+    <ion-content class="has-header padding" >
+        <h3>Adicionar Convidado</h3>
         <form name="newGuest"ng-controller="NewGuest"  ng-submit="submit(user)">
         <div class="list">
             <label class="item item-input">
 
                 <input type="text" ng-model="user.Firstname" name="Firstname" required placeholder="First Name" >
-                <span class="error" ng-show="newGuest.Firstname.$error.required">
-      Obrigatório</span>
+                <span class="error" ng-show="newGuest.Firstname.$error.required">Obrigatório</span>
             </label>
             <label class="item item-input">
 
-                <input type="text" ng-model="user.Lastname" placeholder="Last Name">
+                <input type="text" ng-model="user.Lastname" name="Lastname" placeholder="Last Name" required>
+                <span class="error" ng-show="newGuest.Lastname.$error.required">Obrigatório</span>
             </label>
             <label class="item item-input ">
 
-                <input type="email" ng-model="user.Email" placeholder="Email">
+                <input type="email" ng-model="user.Email" placeholder="Email" name="Email" required>
+                <span class="error" ng-show="newGuest.Email.$error.required">Obrigatório</span>
             </label>
             <label class="item item-input ">
 
@@ -26,10 +28,10 @@
             </label>
             <label class="item item-input ">
 
-                <input type="password" ng-model="user.PassConfirm" placeholder="Password confirm">
+                <input type="password" ng-model="user.PassConfirm"  password-match="user.Pass" placeholder="Password confirm">
             </label>
             <div class="padding">
-                <button class="button button-block button-positive">Submit</button>
+                <button class="button button-block button-positive">Guardar</button>
             </div>
         </div>
         </form>
