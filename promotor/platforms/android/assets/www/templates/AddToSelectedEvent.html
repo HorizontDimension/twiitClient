@@ -13,7 +13,7 @@
 
         <div class="list" ng-repeat="event in events">
 
-            <a class="item item-thumbnail-left" href="#">
+            <a class="item item-thumbnail-left" href="#/tab/AddToNextEvent/{{event.Id}}">
                 <img ng-src="{{apiaddr}}/files/{{event.Thumb}}">
                 <h2>{{event.Name}}</h2>
                 <p>{{event.Description}}</p>{{event.Date | amCalendar}}

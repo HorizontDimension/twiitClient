@@ -33,23 +33,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 templateUrl: "templates/tabs.html"
             })
 
-            // Each tab has its own nav history stack:
-
-            .state('tab.AddToNextEvent', {
-                url: '/AddToNextEvent',
-                views: {
-                    'tab-AddToNextEvent': {
-                        templateUrl: 'templates/addguesttoevent.html',
-                        controller: 'AddToNextEvent'
-                    }
-                }
-            })
             .state('tab.events', {
                 url: '/events',
                 views: {
                     'tab-events': {
-                        templateUrl: 'templates/tab-account.html',
-                        controller: 'AccountCtrl'
+                        templateUrl: 'templates/list-events.html',
+                        controller: 'EventsCtrl'
+                    }
+                }
+            })
+            .state('tab.events-detail', {
+                url: '/events/:eventId',
+                views: {
+                    'tab-events': {
+                        templateUrl: 'templates/friend-detail.html',
+                        controller: 'FriendDetailCtrl'
+                    }
+                }
+            })
+
+            // Each tab has its own nav history stack:
+
+            .state('tab.AddToNextEvent', {
+                url: '/AddToNextEvent/:id',
+                views: {
+                    'tab-AddToNextEvent': {
+                        templateUrl: 'templates/addguesttoevent.html',
+                        controller: 'AddToNextEvent'
                     }
                 }
             })
@@ -62,6 +72,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                     }
                 }
             })
+          /*  .state('tab.AddToSelectedEven', {
+                url: '/AddToSelectedEven/:id',
+                views: {
+                    'tab-AddToSelectedEvent': {
+                        templateUrl: 'templates/addguesttoselectedevent.html',
+                        controller: 'AddToSelectedEven'
+                    }
+                }
+
+
+            })*/
             .state('tab.newguest', {
                 url: '/newguest',
                 views: {
@@ -79,7 +100,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/tab/AddToNextEvent');
+        $urlRouterProvider.otherwise('/tab/AddToNextEvent/0');
 
     }).value("apiaddr", "http://guestlist.twiit.pt");
 

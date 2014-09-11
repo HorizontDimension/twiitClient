@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             // Each tab has its own nav history stack:
 
             .state('tab.AddToNextEvent', {
-                url: '/AddToNextEvent',
+                url: '/AddToNextEvent/:id',
                 views: {
                     'tab-AddToNextEvent': {
                         templateUrl: 'templates/addguesttoevent.html',
@@ -72,6 +72,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                     }
                 }
             })
+          /*  .state('tab.AddToSelectedEven', {
+                url: '/AddToSelectedEven/:id',
+                views: {
+                    'tab-AddToSelectedEvent': {
+                        templateUrl: 'templates/addguesttoselectedevent.html',
+                        controller: 'AddToSelectedEven'
+                    }
+                }
+
+
+            })*/
             .state('tab.newguest', {
                 url: '/newguest',
                 views: {
@@ -89,7 +100,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/tab/AddToNextEvent');
+        $urlRouterProvider.otherwise('/tab/AddToNextEvent/0');
 
     }).value("apiaddr", "http://guestlist.twiit.pt");
 

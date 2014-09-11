@@ -23,11 +23,11 @@ angular.module('starter.services', [])
 
             });
 
-        return promotor
+        return promotor;
     })
     .factory("Event", function ($resource, apiaddr) {
         event = $resource(apiaddr + '/events/:id', {id: '@id'},
-            { latests: {method: 'get', url: apiaddr + '/events/latests/:number', isArray: true}});
+            { latests: {method: 'get', url: apiaddr + '/events/latests/:number', isArray: true}  });
 
         return event
     })
@@ -39,8 +39,8 @@ angular.module('starter.services', [])
 
                 $injector.get("$ionicLoading").show();
                 config.headers = config.headers || {};
-                if ($window.localStorage.getItem('token')) {
-                    config.headers.Authorization = 'Bearer ' + $window.localStorage.getItem('token');
+                if (window.localStorage.getItem('token')) {
+                    config.headers.Authorization = 'Bearer ' + window.localStorage.getItem('token');
                 }
                 return config;
             },
@@ -53,7 +53,7 @@ angular.module('starter.services', [])
                     $location.path('/login')
                     // handle the case where the user is not authenticated
                 }
-                if (response.status > 500){
+                if (response.status > 500) {
                     alert("500 erro")
                 }
                 return response || $q.when(response);
